@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'authtoken';
 const USER_ID = '';
-declare let cordova: any;
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +17,7 @@ export class AuthenticationService {
   authenticationState = new BehaviorSubject(false);
   constructor(private storage: Storage, private platform: Platform) {
     this.platform.ready().then(()=> {
-      console.log('got executed 1')
-      if (cordova && cordova.plugins.Keyboard) {
-          cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
-          console.log('got executed 2')
-      }
+      this.checkToken();
     });
    }
 

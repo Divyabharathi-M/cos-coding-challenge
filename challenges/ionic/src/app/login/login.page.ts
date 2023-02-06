@@ -15,6 +15,7 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   loginForm!: UntypedFormGroup;
   showPassword = false;
+  validateEmailField = false;
   passwordToggleIcon = "eye"
   notAuthenticatedErr = 'Oops!!! Invalid login credentials.';
   somethingWentWrongErr = 'Something went wrong. Please try again later.';
@@ -26,12 +27,11 @@ export class LoginPage implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private loginService: LoginApiService,
     private toastController: ToastController,
-    // private keyboard: Keyboard
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
@@ -68,6 +68,12 @@ export class LoginPage implements OnInit {
   onEnter(submit?: boolean) {
     this.passwordControl.setFocus();
     if(this.loginForm.valid && submit)this.onSubmitLogin();
+  }
+
+  validate() {
+    if(this.loginForm.controls['username'].dirty && this.loginForm.controls['username'].invalid) {
+      this.validateEmailField  = true;
+    }
   }
 
   async errorToast(err?: string) {

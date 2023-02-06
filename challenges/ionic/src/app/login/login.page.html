@@ -6,7 +6,13 @@
          
           <ion-item class="form-field">
             <ion-label><ion-icon name="person"></ion-icon></ion-label>
-            <ion-input type="text" #emailControl (keyup.Enter)="onEnter()" placeholder="E-mail" formControlName="username"></ion-input>
+            <ion-input type="email"
+            inputmode="email"
+            autocomplete="off"
+            autocorrect="off"
+            [clearInput]="true"
+            #emailControl (keyup.Enter)="onEnter()" (focusout)="validate()" placeholder="E-mail" formControlName="username"></ion-input>
+            <span slot="error" *ngIf="validateEmailField" >Enter a valid Email Id.</span>
           </ion-item>
 
           <ion-item class="form-field">
