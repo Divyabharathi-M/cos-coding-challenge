@@ -25,11 +25,14 @@
           
           <ion-button
             color="primary"
-            [disabled]="loginForm.invalid"
+            [disabled]="loginForm.invalid || loginClicked"
             size="medium"
             type="submit"
             expand="block"
-          >Login</ion-button>
+          >
+          <ion-spinner *ngIf="loginClicked" name="bubbles"></ion-spinner>
+          <span *ngIf="!loginClicked">Login</span>
+        </ion-button>
         </ion-col>
   </form>
 </ion-content>

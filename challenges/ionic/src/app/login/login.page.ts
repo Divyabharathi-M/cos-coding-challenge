@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
   loginForm!: UntypedFormGroup;
   showPassword = false;
   validateEmailField = false;
+  loginClicked=false;
   passwordToggleIcon = "eye"
   notAuthenticatedErr = 'Oops!!! Invalid login credentials.';
   somethingWentWrongErr = 'Something went wrong. Please try again later.';
@@ -45,6 +46,7 @@ export class LoginPage implements OnInit {
   }
 
   onSubmitLogin() {
+    this.loginClicked = true;
     const username = this.loginForm.controls['username'].value;
     const password = this.loginForm.controls['password'].value;
 
@@ -77,6 +79,7 @@ export class LoginPage implements OnInit {
   }
 
   async errorToast(err?: string) {
+    this.loginClicked = false;
     const toast = await this.toastController.create({
       message: err || this.somethingWentWrongErr,
       duration: 5000,
