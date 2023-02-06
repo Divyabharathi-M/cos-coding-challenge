@@ -1,0 +1,17 @@
+<ion-app id="caronsale-app">
+  <ion-header class="app-title">
+    <ion-toolbar class="app-title">
+      <ion-buttons *ngIf="showLogOut" class="button-margin" (click)="logOut()" slot="end">
+        <ion-back-button color="light" text="" icon="log-out" defaultHref="/login"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="app-title">
+        <ion-row class="row-element">
+          <div>CAR</div><div>ON</div><div>SALE</div>
+        </ion-row>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-router-outlet></ion-router-outlet>
+  </ion-content>
+</ion-app>

@@ -1,0 +1,29 @@
+
+
+<ion-content id="login-page" class="container">
+  <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmitLogin()">
+        <ion-col class="form-container" align-self-center>
+         
+          <ion-item class="form-field">
+            <ion-label><ion-icon name="person"></ion-icon></ion-label>
+            <ion-input type="text" #emailControl (keyup.Enter)="onEnter()" placeholder="E-mail" formControlName="username"></ion-input>
+          </ion-item>
+
+          <ion-item class="form-field">
+            <ion-label><ion-icon name="key"></ion-icon></ion-label>
+            <ion-input [type]="showPassword ? 'text' : 'password'" #passwordControl (keyup.Enter)="onEnter(true)" placeholder="Password" formControlName="password"></ion-input>
+            <ion-button slot="end" fill="clear" (click)="togglePassword()">
+              <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </ion-button>
+          </ion-item>
+          
+          <ion-button
+            color="primary"
+            [disabled]="loginForm.invalid"
+            size="medium"
+            type="submit"
+            expand="block"
+          >Login</ion-button>
+        </ion-col>
+  </form>
+</ion-content>

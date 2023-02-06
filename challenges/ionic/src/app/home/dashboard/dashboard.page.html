@@ -1,0 +1,65 @@
+<ion-content class="dashboard-content" [fullscreen]="true">
+  <ion-list class="dashboard-content" *ngIf="loaded">
+    <ion-card class="item-card" *ngFor="let item of buyerAuctionList">
+      <ion-card-header>
+        <ion-card-title>{{ item.label }}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-col>
+          <ion-row>
+            <ion-slides pager="true" [options]="slideOpts">
+              <ion-slide  *ngFor="let vehicle of item.vehicleImages">
+                <img [alt]="item.label" [src]="vehicle.url" onerror="this.src='../../../assets/images/car-placeholder.jpeg'" />
+              </ion-slide>
+            </ion-slides>
+          </ion-row>
+          <ion-grid> 
+            <ion-chip class="no-margin">
+              <ion-icon name="timer" color="dark"></ion-icon>
+              <ion-label>{{ 5 * item.remainingTimeInSeconds | date:'H:mm:ss':'UTC'  }}</ion-label>
+            </ion-chip>
+            <ion-chip class="highest-bid-chip">
+              <ion-icon name="ribbon" color="tertiary"></ion-icon>
+              <ion-label>Highest Bidder</ion-label>
+            </ion-chip>
+            <div><span class="label">Highest bid: </span><span class="label-val">{{ item.currentHighestBidValue }}</span></div>
+            <div><span class="label">ez: </span><span class="label-val">{{ item.ez }}</span></div>
+            <div><span class="label">Transmission: </span><span class="label-val">{{ item.transmission }}</span></div>
+            <div><span class="label">Fuel ype: </span><span class="label-val">{{ item.fuelType }}</span></div>
+            <div><span class="label">Mileage: </span><span class="label-val">{{ item.mileageInKm }} Kms</span></div>
+
+          </ion-grid>
+        </ion-col>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  
+  <ion-list class="dashboard-content" *ngIf="!loaded">
+    <ion-card class="item-card" *ngFor="let i of fakeAuctions">
+      <ion-card-content>
+        <ion-col>
+          <ion-row>
+            <ion-thumbnail style="width: 100%; height: 100px;">
+              <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+            </ion-thumbnail>
+          </ion-row>
+          <ion-grid>
+            
+            <div><ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text></div>
+            <div><ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text></div>
+            <div><ion-skeleton-text [animated]="true" style="width: 40%;"></ion-skeleton-text></div>
+            <div><ion-skeleton-text [animated]="true" style="width: 40%;"></ion-skeleton-text></div>
+            <div><ion-skeleton-text [animated]="true" style="width: 40%;"></ion-skeleton-text></div>
+
+          </ion-grid>
+        </ion-col>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <div *ngIf="cannotFindResults" class="dashboard-content error-container">
+    <ion-icon name="sad" color="dark"></ion-icon>
+    {{ errorMessage }}
+  </div>
+</ion-content>

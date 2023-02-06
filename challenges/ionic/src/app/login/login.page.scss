@@ -1,0 +1,30 @@
+
+#login-page {
+    .login-form {
+        height: 100%;
+        width: 100%;
+        place-content: center;
+        align-items: center;
+        display: flex;
+        padding: 16px;
+        background-color: gainsboro;
+        // background: url("../../assets/images/login-background2.jpeg ") no-repeat;
+        // text-align: center;
+        // background-attachment: fixed;
+        // background-position: center center;
+        // background-size: cover;
+    }
+
+    .form-container {
+        background: white;
+        padding: 8px;
+        border-radius: 25px;
+        box-shadow: -10px 20px 25px grey;
+        max-width: 450px;
+        margin: 0 12px
+    }
+    .form-field {
+        padding-bottom: 16px;
+    }
+
+}

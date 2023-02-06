@@ -1,0 +1,8 @@
+{
+  "name": "CarOnSale",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
