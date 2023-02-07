@@ -4,6 +4,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BuyerAuctionsResponse } from 'src/app/models/buyer-auction.model';
 import { interval, Subscription } from 'rxjs';
 import { IonRouterOutlet } from '@ionic/angular';
+import { FuelType, Transmission } from 'src/app/models/common.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,6 +24,8 @@ export class DashboardPage implements OnDestroy, OnInit {
   };
   auctionSubscription!: Subscription;
   refreshSubscription!: Subscription;
+  fueltype = FuelType;
+  transmission = Transmission;
 
   constructor(private auctionService: AuctionService,
     private routerOutlet: IonRouterOutlet,
