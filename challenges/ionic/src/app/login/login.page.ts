@@ -1,25 +1,27 @@
+import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationResult } from './../models/login.model';
 import { LoginApiService } from './../services/login-api.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationRequest } from '../models/login.model';
 import { AuthenticationService } from '../services/authentication.service';
 import { ToastController } from '@ionic/angular';
-// import { Keyboard } from '@ionic-native/keyboard';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy {
   loginForm!: UntypedFormGroup;
   showPassword = false;
   validateEmailField = false;
   loginClicked=false;
   passwordToggleIcon = "eye"
-  notAuthenticatedErr = 'Oops!!! Invalid login credentials.';
-  somethingWentWrongErr = 'Something went wrong. Please try again later.';
+  notAuthenticatedErr = 'ERRORS.invalid_credentials';
+  somethingWentWrongErr = 'ERRORS.something_went_wrong';
+  msgSubscription!: Subscription;
   @ViewChild('emailControl') emailControl!: HTMLIonInputElement;
   @ViewChild('passwordControl') passwordControl!: HTMLIonInputElement;
 
@@ -28,6 +30,7 @@ export class LoginPage implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private loginService: LoginApiService,
     private toastController: ToastController,
+    private translateService: TranslateService,
   ) { }
 
   ngOnInit() {
@@ -61,10 +64,20 @@ export class LoginPage implements OnInit {
     }).catch((error) => {
       let msg = '';
       if(error) {
-        msg = error.status == 401 ? this.notAuthenticatedErr : this.somethingWentWrongErr;
+        msg = error.status == 401 ? this.getErrorMsg(this.notAuthenticatedErr) : this.getErrorMsg(this.somethingWentWrongErr);
       }
       this.errorToast(msg);
     })
+  }
+
+  getErrorMsg(error: string) {
+    let msg = '';
+    this.msgSubscription =  this.translateService.get(error).subscribe(
+      value => {
+        msg = value;
+      }
+    )
+    return msg;
   }
 
   onEnter(submit?: boolean) {
@@ -81,7 +94,7 @@ export class LoginPage implements OnInit {
   async errorToast(err?: string) {
     this.loginClicked = false;
     const toast = await this.toastController.create({
-      message: err || this.somethingWentWrongErr,
+      message: err || this.getErrorMsg(this.somethingWentWrongErr),
       duration: 5000,
       icon: 'sad',
       cssClass: 'error-toast',
@@ -90,4 +103,7 @@ export class LoginPage implements OnInit {
     await toast.present();
   }
 
+  ngOnDestroy(): void {
+    this.msgSubscription.unsubscribe();
+  }
 }

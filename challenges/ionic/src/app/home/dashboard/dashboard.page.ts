@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { BuyerAuctionDisplayModel } from './../../models/buyer-auction.model';
 import { AuctionService } from './../../services/auction.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -22,13 +23,18 @@ export class DashboardPage implements OnDestroy, OnInit {
     initialSlide: 1,
     speed: 400
   };
-  auctionSubscription!: Subscription;
-  refreshSubscription!: Subscription;
+  noAuctionAvailable='ERRORS.no_auction_available';
+  somethinWentWrong='ERRORS.something_went_wrong';
   fueltype = FuelType;
   transmission = Transmission;
 
+  auctionSubscription!: Subscription;
+  refreshSubscription!: Subscription;
+  msgSubscription!: Subscription;
+
   constructor(private auctionService: AuctionService,
     private routerOutlet: IonRouterOutlet,
+    private translateService: TranslateService,
     ) {}
 
   ngOnInit(): void {
@@ -50,12 +56,12 @@ export class DashboardPage implements OnDestroy, OnInit {
         })
       } else {
         this.loaded = true;
-        this.errorMessage = 'No auctions available at the moment.'
+        this.errorMessage = this.getErrorMsg(this.noAuctionAvailable);
         this.cannotFindResults = true;
       }
     }, (err) => {
       this.loaded = true;
-      this.errorMessage = 'Something went wrong.'
+      this.errorMessage = this.getErrorMsg(this.somethinWentWrong);
       this.cannotFindResults = true;
     })
   }
@@ -85,8 +91,19 @@ export class DashboardPage implements OnDestroy, OnInit {
     } 
   }
 
+  getErrorMsg(error: string) {
+    let msg = '';
+    this.msgSubscription =  this.translateService.get(error).subscribe(
+      value => {
+        msg = value;
+      }
+    )
+    return msg;
+  }
+
   ngOnDestroy(): void {
     this.auctionSubscription.unsubscribe();
     this.refreshSubscription.unsubscribe();
+    this.msgSubscription.unsubscribe();
   }
 }

@@ -1,0 +1,25 @@
+{
+    "LOGIN" : {
+        "email": "Email",
+        "password":"Passwort",
+        "login": "Login"
+    },
+    "DASHBOARD": {
+        "highest_bidder": "Höchstbietender",
+        "highest_bid_label": "Höchstes Gebot: ",
+        "ez_label":"Erstzulassung: ",
+        "transmission_label":"Übertragung: ",
+        "fuel_type_label": "Treibstoffart: ",
+        "mileage_label": "Kilometerstand: ",
+        "kms_unit": "Kilometer"
+
+    },
+    "VALIDATION": {
+        "enter_valid_email": "Geben sie eine gültige E-Mail-Adresse an."
+    },
+    "ERRORS": {
+        "no_auction_available": "Zur Zeit keine Auktionen verfügbar.",
+        "something_went_wrong": "Etwas ist schief gelaufen.",
+        "invalid_credentials": "Hoppla!!! Ungültige Login-Details."
+    }
+}

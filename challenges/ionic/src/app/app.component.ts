@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
+import {TranslateService} from "@ngx-translate/core";
+import { IonSelect } from '@ionic/angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -8,10 +10,15 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent {
   showLogOut = false;
+  
+  @ViewChild('mySelect', { static: false }) selectRef!: IonSelect;
+
   constructor(private authService: AuthenticationService,
     private router: Router,
-    ) { 
-          this.initialiseApp();
+    private translate: TranslateService) {
+      translate.setDefaultLang('en');
+      translate.use('en');
+      this.initialiseApp();
   }
 
   initialiseApp() {
@@ -24,6 +31,15 @@ export class AppComponent {
         this.router.navigate(['login']);
       }
     })
+  }
+
+  openLanguageMenu() {
+    this.selectRef.open()
+  }
+
+  handleChange(e: any ) {
+    if(e?.detail?.value == 'DE') this.translate.use('de');
+    else this.translate.use('en');
   }
 
   logOut() {

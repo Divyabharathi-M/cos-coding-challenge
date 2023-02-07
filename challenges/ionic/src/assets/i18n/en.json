@@ -1,0 +1,25 @@
+{
+    "LOGIN" : {
+        "email": "Email",
+        "password":"Password",
+        "login": "Login"
+    },
+    "DASHBOARD": {
+        "highest_bidder": "Highest Bidder",
+        "highest_bid_label": "Highest bid: ",
+        "ez_label":"First registration: ",
+        "transmission_label":"Transmission: ",
+        "fuel_type_label": "Fuel ype: ",
+        "mileage_label": "Mileage: ",
+        "kms_unit": "Kms"
+    },
+    "VALIDATIONS": {
+        "enter_valid_email": "Enter a valid Email."
+    },
+    "ERRORS": {
+        "no_auction_available": "No auctions available at the moment.",
+        "something_went_wrong": "Something went wrong.",
+        "invalid_credentials": "Oops!!! Invalid login credentials."
+    }
+
+}

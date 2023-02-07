@@ -15,19 +15,21 @@
             </ion-slides>
           </ion-row>
           <ion-grid> 
-            <ion-chip class="no-margin">
+            <!-- <ion-chip class="no-margin">
               <ion-icon name="timer" color="dark"></ion-icon>
               <ion-label>{{ 5 * item.remainingTimeInSeconds | date:'H:mm:ss':'UTC'  }}</ion-label>
-            </ion-chip>
+            </ion-chip> -->
+
+            <app-countdown [time]="item.remainingTimeInSeconds" ></app-countdown>
             <ion-chip *ngIf="item.amIHighestBidder" class="highest-bid-chip">
               <ion-icon name="ribbon" color="tertiary"></ion-icon>
-              <ion-label>Highest Bidder</ion-label>
+              <ion-label>{{'DASHBOARD.highest_bidder' | translate}}</ion-label>
             </ion-chip>
-            <div><span class="label">Highest bid: </span><span class="label-val">{{ item.currentHighestBidValue }}</span></div>
-            <div><span class="label">ez: </span><span class="label-val">{{ item.ez }}</span></div>
-            <div><span class="label">Transmission: </span><span class="label-val">{{ transmission[item.transmission] }}</span></div>
-            <div><span class="label">Fuel ype: </span><span class="label-val">{{ fueltype[item.fuelType] }}</span></div>
-            <div><span class="label">Mileage: </span><span class="label-val">{{ item.mileageInKm }} Kms</span></div>
+            <div><span class="label">{{'DASHBOARD.highest_bid_label' | translate}} </span><span class="label-val">{{ item.currentHighestBidValue }}</span></div>
+            <div><span class="label">{{'DASHBOARD.ez_label' | translate}} </span><span class="label-val">{{ item.ez }}</span></div>
+            <div><span class="label">{{'DASHBOARD.transmission_label' | translate}}</span><span class="label-val">{{ transmission[item.transmission] }}</span></div>
+            <div><span class="label">{{'DASHBOARD.fuel_type_label' | translate}}</span><span class="label-val">{{ fueltype[item.fuelType] }}</span></div>
+            <div><span class="label">{{'DASHBOARD.mileage_label' | translate}}</span><span class="label-val">{{ item.mileageInKm }} {{'DASHBOARD.kms_unit' | translate}}</span></div>
 
           </ion-grid>
         </ion-col>

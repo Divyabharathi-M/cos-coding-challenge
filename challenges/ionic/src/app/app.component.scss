@@ -3,7 +3,7 @@
     .app-title {
         color: white;
         background: black;
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 800;
         border-radius: 0 0 25px 25px;
         padding-left: 0;
@@ -16,9 +16,15 @@
         }
     }
 
+    .row-alignment {
+        place-content: space-between;
+        align-items: center;
+    }
+
     .button-margin {
         margin: 0 10px;
         background-color: black;
         border-radius: 50%;
+        place-content: end;
     }
 }

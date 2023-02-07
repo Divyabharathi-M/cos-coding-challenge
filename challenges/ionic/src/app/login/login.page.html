@@ -11,13 +11,13 @@
             autocomplete="off"
             autocorrect="off"
             [clearInput]="true"
-            #emailControl (keyup.Enter)="onEnter()" (focusout)="validate()" placeholder="E-mail" formControlName="username"></ion-input>
-            <span slot="error" *ngIf="validateEmailField" >Enter a valid Email Id.</span>
+            #emailControl (keyup.Enter)="onEnter()" (focusout)="validate()" placeholder="{{'LOGIN.email' | translate}}" formControlName="username"></ion-input>
+            <span slot="error" *ngIf="validateEmailField" >{{'VALIDATIONS.enter_valid_email' | translate}}</span>
           </ion-item>
 
           <ion-item class="form-field">
             <ion-label><ion-icon name="key"></ion-icon></ion-label>
-            <ion-input [type]="showPassword ? 'text' : 'password'" #passwordControl (keyup.Enter)="onEnter(true)" placeholder="Password" formControlName="password"></ion-input>
+            <ion-input [type]="showPassword ? 'text' : 'password'" #passwordControl (keyup.Enter)="onEnter(true)" placeholder="{{'LOGIN.password' | translate}}" formControlName="password"></ion-input>
             <ion-button slot="end" fill="clear" (click)="togglePassword()">
               <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
             </ion-button>
@@ -31,7 +31,7 @@
             expand="block"
           >
           <ion-spinner *ngIf="loginClicked" name="bubbles"></ion-spinner>
-          <span *ngIf="!loginClicked">Login</span>
+          <span *ngIf="!loginClicked">{{'LOGIN.login' | translate}}</span>
         </ion-button>
         </ion-col>
   </form>
