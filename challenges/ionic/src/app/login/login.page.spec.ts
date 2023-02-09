@@ -1,24 +1,28 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 
-import { LoginPage } from './login.page';
+import { LoginPageComponent } from './login.page';
 
-describe('LoginPage', () => {
-  let component: LoginPage;
-  let fixture: ComponentFixture<LoginPage>;
+describe('LoginPageComponent', () => {
+  let component: LoginPageComponent;
+  let fixture: ComponentFixture<LoginPageComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginPage ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ LoginPageComponent ],
+      providers: [IonicModule.forRoot(),
+        IonicStorageModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(LoginPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(LoginPageComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });

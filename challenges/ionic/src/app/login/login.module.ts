@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 
-import { LoginPage } from './login.page';
+import { LoginPageComponent } from './login.page';
 
 @NgModule({
   imports: [
@@ -18,6 +18,6 @@ import { LoginPage } from './login.page';
     TranslateModule,
     LoginPageRoutingModule,
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPageComponent]
 })
 export class LoginPageModule {}

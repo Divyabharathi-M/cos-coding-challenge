@@ -11,6 +11,8 @@ describe('AuctionService', () => {
   });
 
   it('should be created', () => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(AuctionService);
     expect(service).toBeTruthy();
   });
 });

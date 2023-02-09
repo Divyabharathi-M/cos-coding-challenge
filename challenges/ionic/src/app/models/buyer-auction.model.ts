@@ -23,7 +23,7 @@ export interface AssociatedVehicle {
 
 interface VehicleImage {
     url: string,
-    perspective: string,
+    perspective: number,
 
 }
 export interface BuyerAuctionDisplayModel {

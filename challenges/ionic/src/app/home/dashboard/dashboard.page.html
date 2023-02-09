@@ -15,12 +15,11 @@
             </ion-slides>
           </ion-row>
           <ion-grid> 
-            <!-- <ion-chip class="no-margin">
+            <ion-chip class="no-margin">
               <ion-icon name="timer" color="dark"></ion-icon>
               <ion-label>{{ 5 * item.remainingTimeInSeconds | date:'H:mm:ss':'UTC'  }}</ion-label>
-            </ion-chip> -->
+            </ion-chip>
 
-            <app-countdown [time]="item.remainingTimeInSeconds" ></app-countdown>
             <ion-chip *ngIf="item.amIHighestBidder" class="highest-bid-chip">
               <ion-icon name="ribbon" color="tertiary"></ion-icon>
               <ion-label>{{'DASHBOARD.highest_bidder' | translate}}</ion-label>

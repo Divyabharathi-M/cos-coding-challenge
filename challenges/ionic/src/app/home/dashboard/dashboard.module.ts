@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { DashboardPage } from './dashboard.page';
 
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
-import { CountdownComponent } from 'src/app/components/countdown/countdown.component';
 
 
 @NgModule({
@@ -17,6 +16,7 @@ import { CountdownComponent } from 'src/app/components/countdown/countdown.compo
     TranslateModule,
     DashboardPageRoutingModule
   ],
-  declarations: [DashboardPage, CountdownComponent]
+  declarations: [DashboardPage, 
+  ]
 })
 export class DashboardPageModule {}

@@ -13,7 +13,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit, OnDestroy {
+export class LoginPageComponent implements OnInit, OnDestroy {
   loginForm!: UntypedFormGroup;
   showPassword = false;
   validateEmailField = false;
